@@ -1,0 +1,14 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.build
+    container_name: react_app
+    ports:
+      - "80:80"
+    networks:
+      - react_network
+
+networks:
+  react_network:
+    driver: bridge

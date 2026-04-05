@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:latest
+    container_name: redis_limited
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - redis_network
+    
+    # Giới hạn tài nguyên (resource limits)
+    deploy:
+      resources:
+        limits:
+          # Giới hạn CPU - 0.5 CPU (50% của 1 CPU core)
+          cpus: '0.5'
+          # Giới hạn RAM - 512MB
+          memory: 512M
+        reservations:
+          # CPU tối thiểu được dành riêng cho container
+          cpus: '0.25'
+          # RAM tối thiểu được dành riêng cho container
+          memory: 256M
+    
+    command: redis-server
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+
+networks:
+  redis_network:
+    driver: bridge

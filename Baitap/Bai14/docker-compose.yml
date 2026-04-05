@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  service1:
+    image: nginx:alpine
+    container_name: service1_container
+    ports:
+      - "8001:80"
+    volumes:
+      - ./service1.html:/usr/share/nginx/html/index.html:ro
+    networks:
+      - private_network
+    environment:
+      - SERVICE_NAME=Service 1
+
+  service2:
+    image: nginx:alpine
+    container_name: service2_container
+    ports:
+      - "8002:80"
+    volumes:
+      - ./service2.html:/usr/share/nginx/html/index.html:ro
+    networks:
+      - private_network
+    environment:
+      - SERVICE_NAME=Service 2
+
+networks:
+  # Mạng riêng - các container trong mạng này có thể giao tiếp với nhau
+  # bằng cách sử dụng tên service làm hostname
+  private_network:
+    driver: bridge

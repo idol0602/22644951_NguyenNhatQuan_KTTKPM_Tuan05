@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_with_volumes
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      # Named volume để lưu trữ dữ liệu database
+      - mysql_data:/var/lib/mysql
+      # Bind mount để lưu trữ các script SQL
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - mysql_network
+    # Chính sách restart tự động
+    restart: unless-stopped
+
+volumes:
+  # Named volume sẽ được lưu trữ trên host machine
+  mysql_data:
+    driver: local
+
+networks:
+  mysql_network:
+    driver: bridge

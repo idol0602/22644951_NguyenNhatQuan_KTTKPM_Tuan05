@@ -1,0 +1,5 @@
+{
+  "name": "react-nginx-app",
+  "version": "1.0.0",
+  "description": "React app served by Nginx in Docker"
+}

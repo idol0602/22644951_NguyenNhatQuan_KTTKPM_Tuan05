@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: nodejs_mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: nodejs_db
+      MYSQL_USER: nodejs_user
+      MYSQL_PASSWORD: nodejs_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - nodejs_network
+
+  nodejs:
+    build: .
+    container_name: nodejs_app
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: nodejs_db
+      DB_USER: nodejs_user
+      DB_PASSWORD: nodejs_password
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    networks:
+      - nodejs_network
+
+volumes:
+  mysql_data:
+
+networks:
+  nodejs_network:
+    driver: bridge

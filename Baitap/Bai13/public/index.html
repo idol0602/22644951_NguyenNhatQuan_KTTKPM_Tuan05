@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React App with Nginx</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+                sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .root {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        button {
+            background-color: #61dafb;
+            border: none;
+            color: #282c34;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(97, 218, 251, 0.4);
+        }
+
+        button:hover {
+            background-color: #4fa8c5;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 168, 197, 0.6);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .info {
+            margin-top: 40px;
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="root">
+        <div class="container">
+            <h1>🚀 React App with Nginx</h1>
+            <p>This application is built with React and served by Nginx in a Docker container!</p>
+            <button onclick="handleClick()">Click Me!</button>
+            <div class="info">
+                <p>Running in Docker with Nginx</p>
+                <p>Access via: http://localhost:80</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleClick() {
+            alert('✨ Hello from React App with Nginx in Docker! ✨');
+        }
+    </script>
+</body>
+
+</html>
